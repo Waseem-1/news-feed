@@ -88,13 +88,20 @@
           </v-card-title>
 
           <v-divider></v-divider>
-          <v-card-text>
+          <v-card-text v-if="filteredPosts.length">
             <PostCard
               v-for="post in paginatedPosts"
               :post="post"
               :key="post.id"
               @on-edit="onEditPost"
             />
+          </v-card-text>
+          <v-card-text v-else align="center" justify="center">
+            <h2>No Posts</h2>
+            <br />
+            <v-btn color="primary" @click="setSamplePosts"
+              >Fill Sample Posts</v-btn
+            >
           </v-card-text>
         </v-card>
       </v-col>
@@ -166,6 +173,7 @@
 <script>
 import PostCard from "@/components/PostCard.vue";
 import PostForm from "@/components/PostForm.vue";
+import { samplePosts } from "@/SamplePosts.js";
 export default {
   components: {
     PostCard,
@@ -217,7 +225,6 @@ export default {
     onCreatePost() {
       this.openDialog = true;
     },
-
     onDialogClose() {
       this.openDialog = false;
       this.postData = {};
@@ -233,6 +240,10 @@ export default {
       this.postData = {};
       setTimeout(() => (this.snackbarText = ""), 2000);
     },
+    setSamplePosts() {
+      this.$store.dispatch("setPosts", samplePosts);
+    },
+
     sortAsceding() {
       if (this.sortKey) {
         const property = this.sortKey.toLowerCase();
@@ -258,6 +269,7 @@ export default {
         this.page -= 1;
       }
     },
+
     updatePostsPerPage(number) {
       this.page = 1;
       this.postsPerPage = number;
