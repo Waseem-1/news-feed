@@ -1,4 +1,4 @@
-# sdui-task
+# news-feed-task
 
 This is simple vuejs app which shows the data as news feed using vuex store. It also enables pagination, sorting and search.
 
