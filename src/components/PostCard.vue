@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Model for post body start here -->
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
@@ -16,6 +17,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- Model for post body ends here -->
+    <!-- Card for post starts here -->
     <v-card class="mb-1 mx-auto" width="600px">
       <v-card-title>
         <span>
@@ -32,7 +35,6 @@
               <v-list-item-title>
                 <span>{{ post.author }}</span>
                 <br />
-                <!-- <span class="font-weight-light">{{ post.title }}</span> -->
                 <v-chip small>
                   {{ post.title }}
                 </v-chip>
@@ -54,6 +56,7 @@
         </span>
       </v-card-text>
     </v-card>
+    <!-- Card for post ends here -->
   </div>
 </template>
 
@@ -72,11 +75,15 @@ export default {
     };
   },
   computed: {
+    /**
+     * Return truncated post body if the characters of post are more than 160 characters
+     */
     postBody() {
       return this.isLimitReached
         ? this.post.body.substring(0, 140)
         : this.post.body;
     },
+
     isLimitReached() {
       return this.post.body.length >= 160 ? true : false;
     },

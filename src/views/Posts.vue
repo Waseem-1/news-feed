@@ -203,7 +203,7 @@ export default {
 
   computed: {
     ...mapState(["posts"]),
-
+    // It filters all posts based on our search
     filteredPosts() {
       if (this.filterText) {
         return this.posts.filter((post) =>
@@ -227,6 +227,7 @@ export default {
     },
 
     paginatedPosts() {
+      // Its returns only results to be shown which are aligned with pagination
       return this.filteredPosts.slice(this.indexStart, this.indexEnd);
     },
   },
@@ -253,16 +254,24 @@ export default {
     },
 
     setSamplePosts() {
+      // Calling vuex action to fill the sample posts
       this.$store.dispatch("setPosts", samplePosts);
     },
 
+    /**
+     * This method sorts the posts Asceding according to our selected property, default property is Title
+     */
     sortAsceding() {
       if (this.sortKey) {
+        // Getting the property which to sort the posts
         const property = this.sortKey.toLowerCase();
         this.posts.sort((a, b) => a[property].localeCompare(b[property]));
       }
     },
 
+    /**
+     * This method sorts the posts Descending according to our selected property, default property is Title
+     */
     sortDescending() {
       if (this.sortKey) {
         const property = this.sortKey.toLowerCase();

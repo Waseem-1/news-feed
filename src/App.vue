@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <!-- App bar start here -->
     <v-app-bar app color="primary" dark>
       <v-col cols="2">
         <v-select
@@ -13,7 +14,7 @@
         ></v-select>
       </v-col>
       <v-spacer></v-spacer>
-
+      <!-- Navigation links starts here, It will be only visible in task two -->
       <template v-if="!isTaskOne">
         <router-link :to="{ name: 'page-one' }">
           <span class="mr-2" style="color: #fff">Page 1</span>
@@ -25,7 +26,9 @@
           <span class="mr-2" style="color: #fff">Page 3</span>
         </router-link>
       </template>
+      <!-- Navigation links ends here -->
     </v-app-bar>
+    <!-- App bar ends here -->
 
     <v-main>
       <router-view />
@@ -49,8 +52,10 @@ export default {
   methods: {
     changeTask() {
       if (this.isTaskOne) {
+        // routing to posts component if the task is one
         this.$router.push({ name: "Posts" });
       } else {
+        // routing to samples pages(page-one) component if the task is two
         this.$router.push({ name: "page-one" });
       }
     },

@@ -1,11 +1,7 @@
 <template>
   <v-row justify="center">
+    <!-- Dialog for creating/updating post starts here -->
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <!-- <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          Open Dialog
-        </v-btn>
-      </template> -->
       <v-form ref="postForm" v-model="isFormValid">
         <v-card>
           <v-card-title>
@@ -51,6 +47,7 @@
         </v-card>
       </v-form>
     </v-dialog>
+    <!-- Dialog for creating/updating post ends here -->
   </v-row>
 </template>
 
@@ -98,9 +95,11 @@ export default {
       if (this.isFormValid) {
         const post = { ...this.form };
         if (this.editMode) {
+          // calling edit post action from vuex store as post is in edit mode
           this.$store.dispatch("editPost", { id: this.post.id, ...post });
           this.message = "Post is updated successfully.";
         } else {
+          // calling create post action from vuex store as post is being created
           this.$store.dispatch("createPost", post);
           this.message = "Post is created successfully.";
         }

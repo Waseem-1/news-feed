@@ -34,6 +34,7 @@ const routes = [
     name: "404",
     component: NotFound,
   },
+  // fall back route, if there is no valid route
   {
     path: "*",
     redirect: { name: "404" },
