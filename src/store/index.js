@@ -32,11 +32,5 @@ export default new Vuex.Store({
       posts.forEach((post) => commit("ADD_POST", post));
     },
   },
-
-  getters: {
-    getPosts(state) {
-      return state.posts;
-    },
-  },
   modules: {},
 });

@@ -88,7 +88,7 @@
           </v-card-title>
 
           <v-divider></v-divider>
-          <v-card-text v-if="filteredPosts.length">
+          <v-card-text v-if="posts.length">
             <PostCard
               v-for="post in paginatedPosts"
               :post="post"
@@ -96,12 +96,18 @@
               @on-edit="onEditPost"
             />
           </v-card-text>
-          <v-card-text v-else align="center" justify="center">
+          <v-card-text v-else align="center">
             <h2>No Posts</h2>
             <br />
             <v-btn color="primary" @click="setSamplePosts"
               >Fill Sample Posts</v-btn
             >
+          </v-card-text>
+          <v-card-text
+            v-if="!filteredPosts.length && posts.length"
+            align="center"
+          >
+            <h2>No Posts</h2>
           </v-card-text>
         </v-card>
       </v-col>
@@ -174,6 +180,7 @@
 import PostCard from "@/components/PostCard.vue";
 import PostForm from "@/components/PostForm.vue";
 import { samplePosts } from "@/SamplePosts.js";
+import { mapState } from "vuex";
 export default {
   components: {
     PostCard,
@@ -195,9 +202,8 @@ export default {
   },
 
   computed: {
-    posts() {
-      return this.$store.getters.getPosts;
-    },
+    ...mapState(["posts"]),
+
     filteredPosts() {
       if (this.filterText) {
         return this.posts.filter((post) =>
@@ -207,6 +213,7 @@ export default {
         return this.posts;
       }
     },
+
     numberOfPages() {
       return Math.ceil(this.filteredPosts.length / this.postsPerPage);
     },
@@ -214,9 +221,11 @@ export default {
     indexStart() {
       return (this.page - 1) * this.postsPerPage;
     },
+
     indexEnd() {
       return this.indexStart + this.postsPerPage;
     },
+
     paginatedPosts() {
       return this.filteredPosts.slice(this.indexStart, this.indexEnd);
     },
@@ -225,6 +234,7 @@ export default {
     onCreatePost() {
       this.openDialog = true;
     },
+
     onDialogClose() {
       this.openDialog = false;
       this.postData = {};
@@ -233,6 +243,7 @@ export default {
       this.openDialog = true;
       this.postData = post;
     },
+
     onHandleSave(message) {
       this.openDialog = false;
       this.snackbar = true;
@@ -240,6 +251,7 @@ export default {
       this.postData = {};
       setTimeout(() => (this.snackbarText = ""), 2000);
     },
+
     setSamplePosts() {
       this.$store.dispatch("setPosts", samplePosts);
     },
