@@ -14,6 +14,7 @@
                   <v-text-field
                     v-model="form.author"
                     label="Author"
+                    color="green"
                     :rules="[(v) => !!v || 'Author is required']"
                     outlined
                     required
@@ -23,6 +24,7 @@
                   <v-text-field
                     v-model="form.title"
                     label="Title"
+                    color="green"
                     :rules="[(v) => !!v || 'Title is required']"
                     outlined
                   ></v-text-field>
@@ -32,6 +34,7 @@
                     v-model="form.body"
                     outlined
                     label="Body"
+                    color="green"
                     :rules="[(v) => !!v || 'Body is required']"
                     value="The quick brown fox"
                   ></v-textarea>
@@ -41,8 +44,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="onClose"> Close </v-btn>
-            <v-btn color="blue darken-1" text @click="onSave"> Save </v-btn>
+            <v-btn color="green darken-1" text @click="onClose"> Close </v-btn>
+            <v-btn color="green darken-1" text @click="onSave"> Save </v-btn>
           </v-card-actions>
         </v-card>
       </v-form>

@@ -33,13 +33,14 @@
       <v-col cols="8" offset="2">
         <!-- Sort and filteration toolbar starts here -->
         <template>
-          <v-toolbar dark color="blue darken-3" class="mb-1">
+          <v-toolbar dark color="green darken-3" class="mb-1">
             <v-text-field
               v-model="filterText"
               clearable
               flat
               solo-inverted
               hide-details
+              color="green"
               prepend-inner-icon="mdi-magnify"
               label="Search"
               height="10"
@@ -49,8 +50,10 @@
               <v-select
                 v-model="sortKey"
                 flat
+                color="green"
                 solo-inverted
                 hide-details
+                item-color="green"
                 :items="sortKeys"
                 prepend-inner-icon="mdi-magnify"
                 label="Sort by"
@@ -60,7 +63,7 @@
                 <v-btn
                   large
                   depressed
-                  color="blue"
+                  color="green"
                   :value="false"
                   @click="sortAsceding"
                 >
@@ -69,7 +72,7 @@
                 <v-btn
                   large
                   depressed
-                  color="blue"
+                  color="green"
                   :value="true"
                   @click="sortDescending"
                 >
@@ -84,7 +87,9 @@
           <v-card-title>
             <span>Posts</span>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="onCreatePost"> New post</v-btn>
+            <v-btn style="color: #fff" color="green" @click="onCreatePost">
+              New post</v-btn
+            >
           </v-card-title>
 
           <v-divider></v-divider>
@@ -99,7 +104,7 @@
           <v-card-text v-else align="center">
             <h2>No Posts</h2>
             <br />
-            <v-btn color="primary" @click="setSamplePosts"
+            <v-btn style="color: #fff" color="green" @click="setSamplePosts"
               >Fill Sample Posts</v-btn
             >
           </v-card-text>
@@ -125,7 +130,7 @@
                 <v-btn
                   dark
                   text
-                  color="primary"
+                  color="green"
                   class="ml-2"
                   v-bind="attrs"
                   v-on="on"
@@ -153,7 +158,7 @@
             <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="green darken-3"
               class="mr-1"
               @click="previousPage"
             >
@@ -162,7 +167,7 @@
             <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="green darken-3"
               class="ml-1"
               @click="nextPage"
             >

@@ -1,19 +1,8 @@
 <template>
   <v-app>
     <!-- App bar start here -->
-    <v-app-bar app color="primary" dark>
-      <v-col cols="2">
-        <v-select
-          v-model="task"
-          :items="tasks"
-          label="Tasks"
-          class="mt-5"
-          dense
-          outlined
-          @change="changeTask"
-        ></v-select>
-      </v-col>
-      <v-spacer></v-spacer>
+    <v-app-bar app color="green" dark>
+      <v-toolbar-title>News Feed App</v-toolbar-title>
       <!-- Navigation links starts here, It will be only visible in task two -->
       <template v-if="!isTaskOne">
         <router-link :to="{ name: 'page-one' }">
