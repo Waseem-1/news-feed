@@ -1,6 +1,7 @@
 # news-feed-task
 
-This is simple vuejs app which shows the data as news feed using vuex store. It also enables pagination, sorting and search.
+This is simple vuejs app which shows the data as news feed using vuex store. It also enables pagination, sorting and search. It can be accessed via link below
+https://waseem-1.github.io/news-feed/
 
 ## Project setup
 
